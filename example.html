@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>セレクトボックス</title>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" href="/service/system12/public/css/default.css">
+<!-- plugin/global -->
+<link rel="stylesheet" href="default.css">
+<style>
+#select_box0, 
+#select_box1{
+	width:400px;
+}
+</style>
+</head>
+<body>
+	<div id="select_box0"></div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div id="select_box1"></div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<input type="button" name="reset_list" value="リスト再設定">
+	<br>
+	<br>
+	<br>
+	<input type="button" name="change" value="チェンジ">
+	<br>
+	<br>
+	<br>
+	<input type="button" name="disabled" value="入力禁止">
+	<br>
+	<br>
+	<br>
+	<input type="button" name="init" value="初期化">
+	<br>
+	<br>
+	<br>
+	<input type="button" name="reset" value="再設定">
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<!-- lib/jquery -->
+	<script src="/service/system12/public/libs/jquery/3.6.0/jquery.min.js"></script>
+	
+	<!-- plugin/global -->
+	<script src="jquery.selectBox.js"></script>
+	
+	<script>
+(function($){
+	$(document).ready(function(){
+		$('#select_box0').selectBox({
+			input:true, 
+			attr:{
+				id:'list0', 
+				name:'list', 
+				class:'class' 
+			}, 
+			list:{
+				'0':'う値0', 
+				'1':'い値1', 
+				'2':'お値2', 
+				'6':'お値2', 
+				'5':'お値2', 
+				'3':'え値3', 
+				'4':'あ値4' 
+			}, 
+			disabledList:[
+				'4' 
+			], 
+			selectValue:0, 
+			sort:'value', 
+			sortPosition:'asc', 
+			funcChangeCallback:(
+				value, 
+				text, 
+			) => {
+				console.log([value, text]);
+			} 
+		});
+		$('#select_box1').selectBox({
+			input:false, 
+			list:{
+				'0':'値0', 
+				'1':'値1', 
+				'2':'値2', 
+				'3':'値3', 
+				'4':'値4' 
+			}, 
+			selectValue:'3', 
+			sort:'key', 
+			sortPosition:'desc', 
+			flagDisabled:true, 
+			flagSearchForm:true, 
+			searchFormPlaceHolder:'検索0', 
+			funcChangeCallback:(
+				value, 
+				text, 
+			) => {
+				console.log([value, text]);
+			} 
+		});
+		$('input[name="reset_list"]').on('click', () => {
+			$('#select_box0').trigger('selectBox.resetList', {
+				list:{
+					'new0':'new値0', 
+					'new1':'new値1', 
+					'new2':'new値2', 
+					'new3':'new値3', 
+					'new4':'new値4' 
+				}, 
+				disabledList:[
+					'new0', 
+					'new4' 
+				], 
+				selectValue:'new2' 
+			});
+		});
+		$('input[name="change"]').on('click', () => {
+			$('#select_box0').trigger('selectBox.change', 'new1');
+		});
+		$('input[name="disabled"]').on('click', () => {
+			$('#select_box1').trigger('selectBox.disabled', 'toggle');
+		});
+		$('input[name="init"]').on('click', () => {
+			$('#select_box1').trigger('selectBox.init');
+		});
+		$('input[name="reset"]').on('click', () => {
+			$('#select_box1').trigger('selectBox.reset', {
+				list:{
+					'new0':'new値00', 
+					'new1':'new値10', 
+					'new2':'new値20', 
+					'new3':'new値30', 
+					'new4':'new値40' 
+				}, 
+				disabledList:[
+					'new0', 
+					'new4' 
+				], 
+				selectValue:'new2', 
+				funcChangeCallback:(
+					value, 
+					text, 
+				) => {
+					console.log('new');
+					console.log([value, text]);
+				} 
+			});
+		});
+	});
+})(jQuery);
+	</script>
+</body>
+</html>
