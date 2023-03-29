@@ -2,74 +2,73 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<title>セレクトボックス</title>
-<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0">
+<title>jQueryプラグイン - セレクトボックス</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
 <meta name="format-detection" content="telephone=no">
-<link rel="stylesheet" href="/service/system12/public/css/default.css">
-<!-- plugin/global -->
-<link rel="stylesheet" href="default.css">
+<link rel="stylesheet" href="./css/default.css">
+<!-- plugin -->
+<link rel="stylesheet" href="./plugin/default.css">
 <style>
-#select_box0, 
-#select_box1{
-	width:400px;
+.wrapper{
+	width:500px;
+	margin:0 auto 30px;
+}
+
+.wrapper:last-child{
+	margin-bottom:0;
+}
+
+.select_box{
+	width:100%;
+	margin-bottom:10px;
+}
+
+.event_trigger_list{
+	display:flex;
+}
+
+.event_trigger_list > li{
+	margin-right:10px;
+}
+
+.event_trigger_list > li:last-child{
+	margin-right:0;
 }
 </style>
 </head>
 <body>
-	<div id="select_box0"></div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<div id="select_box1"></div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<input type="button" name="reset_list" value="リスト再設定">
-	<br>
-	<br>
-	<br>
-	<input type="button" name="change" value="チェンジ">
-	<br>
-	<br>
-	<br>
-	<input type="button" name="disabled" value="入力禁止">
-	<br>
-	<br>
-	<br>
-	<input type="button" name="init" value="初期化">
-	<br>
-	<br>
-	<br>
-	<input type="button" name="reset" value="再設定">
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+	<section class="wrapper">
+		<div class="select_box" id="select_box0"></div>
+		<ul class="event_trigger_list">
+			<li>
+				<input type="button" name="reset_list" value="リスト再設定">
+			</li>
+			<li>
+				<input type="button" name="change" value="選択内容変更">
+			</li>
+		</ul>
+	</section>
+	<section class="wrapper">
+		<div class="select_box" id="select_box1"></div>
+		<ul class="event_trigger_list">
+			<li>
+				<input type="button" name="disabled" value="入力禁止切り替え">
+			</li>
+			<li>
+				<input type="button" name="init" value="プラグイン初期化">
+			</li>
+			<li>
+				<input type="button" name="reset" value="プラグイン再設定">
+			</li>
+		</ul>
+	</section>
 	<!-- lib/jquery -->
-	<script src="/service/system12/public/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	
-	<!-- plugin/global -->
-	<script src="jquery.selectBox.js"></script>
+	<!-- plugin -->
+	<script src="./plugin/jquery.selectBox.js"></script>
 	
 	<script>
 (function($){
@@ -82,13 +81,13 @@
 				class:'class' 
 			}, 
 			list:{
-				'0':'う値0', 
-				'1':'い値1', 
-				'2':'お値2', 
-				'6':'お値2', 
-				'5':'お値2', 
-				'3':'え値3', 
-				'4':'あ値4' 
+				'0':'値0', 
+				'1':'値1', 
+				'2':'値2', 
+				'6':'値2', 
+				'5':'値2', 
+				'3':'値3', 
+				'4':'値4' 
 			}, 
 			disabledList:[
 				'4' 
@@ -153,11 +152,11 @@
 		$('input[name="reset"]').on('click', () => {
 			$('#select_box1').trigger('selectBox.reset', {
 				list:{
-					'new0':'new値00', 
-					'new1':'new値10', 
-					'new2':'new値20', 
-					'new3':'new値30', 
-					'new4':'new値40' 
+					'new0':'new値0', 
+					'new1':'new値1', 
+					'new2':'new値2', 
+					'new3':'new値3', 
+					'new4':'new値4' 
 				}, 
 				disabledList:[
 					'new0', 
